@@ -18,7 +18,7 @@ export const getDebugPort = () => {
           localArg.startsWith('--inspect') ||
           localArg.startsWith('--inspect-brk')
       )
-      ?.split('=')[1] ??
+      ?.split('=', 2)[1] ??
     process.env.NODE_OPTIONS?.match?.(/--inspect(-brk)?(=(\S+))?( |$)/)?.[3]
   return debugPortStr ? parseInt(debugPortStr, 10) : 9229
 }
@@ -40,3 +40,5 @@ export function getPort(args: arg.Result<arg.Spec>): number {
 
   return 3000
 }
+
+export const RESTART_EXIT_CODE = 77
